@@ -9,7 +9,6 @@ The models for this demo come from a popular suite of models known as Fast Neura
 The application displays your default camera feed, and uses an ONNX model to apply a style transfer. There are a few to choose from. It uses these pre-trained models from the [ONNX Model Zoo](https://huggingface.co/onnxmodelzoo):
 * mosaic
 * candy
-* rain-princess
 * udnie
 * pointilism
 
@@ -27,10 +26,6 @@ Mosaic:
 Candy:
 
 ![Alt text](https://raw.githubusercontent.com/wccug/styletransfer/refs/heads/main/images/Demo2.png)
-
-Rain-princess:
-
-![Alt text](https://raw.githubusercontent.com/wccug/styletransfer/refs/heads/main/images/Demo3.png)
 
 Udnie:
 
