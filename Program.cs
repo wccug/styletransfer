@@ -122,6 +122,7 @@ namespace styletransfer
             bool errorReadingCamera = false;
             float fps = 0;
             bool fullscreen = true;
+            bool showDiagnostics = true;
 
             while (true)
             {
@@ -163,8 +164,11 @@ namespace styletransfer
                 Cv2.Resize(rendered, display, new Size(displayWidth, displayHeight), interpolation: InterpolationFlags.Cubic);
                 rendered.Dispose();
 
-                string label = currentModel > 0 ? sessions[currentModel].Name : "raw";
-                Cv2.PutText(display, $"{label}  {fps:F1} FPS", new Point(10, 30), HersheyFonts.HersheySimplex, 0.8, Scalar.White, 2);
+                if (showDiagnostics)
+                {
+                    string label = currentModel > 0 ? sessions[currentModel].Name : "raw";
+                    Cv2.PutText(display, $"{label}  {fps:F1} FPS", new Point(10, 30), HersheyFonts.HersheySimplex, 0.8, Scalar.White, 2);
+                }
 
                 Cv2.ImShow(windowName, display);
 
@@ -193,7 +197,10 @@ namespace styletransfer
                     {
                         Cv2.SetWindowProperty(windowName, WindowPropertyFlags.Fullscreen, (double)WindowFlags.Normal);
                     }
-
+                }
+                else if (key == 'd' || key == 'd')
+                {
+                    showDiagnostics = !showDiagnostics;
                 }
 
                 // Exit when the user closes the window with the X button
