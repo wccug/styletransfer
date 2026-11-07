@@ -9,7 +9,7 @@ namespace styletransfer
     internal class Program
     {
         // Models that come from ONNX Model Zoo
-        static string[] styleNames = { "mosaic", "candy", "rain-princess", "udnie", "pointilism" };
+        static string[] styleNames = { "mosaic", "candy", "udnie", "pointilism" };
 
         // If the resolution of the model is kept pretty small it can be done on CPU even on a
         // not super high end computer.
