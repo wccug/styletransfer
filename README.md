@@ -1,4 +1,4 @@
-# styletransfer
+# Hackforge ML AI Style Transfer Demo
 
 This is a simple camera demo that uses ML AI style transfer. It displays your default camera feed, and uses an ONNX model to apply a style transfer. There are a few to choose from. It uses these pre-trained models from the [ONNX Model Zoo](https://huggingface.co/onnxmodelzoo):
 * mosaic
@@ -42,6 +42,9 @@ Use the following keyboard keys:
 * F - toggle windowed and fullscreen mode
 * D - toggle diagnostic text, like the model name and frame counter, on and off
 
+## Testing
+This project was tested on Windows 10 x64, on i7-10700K. The evaluation is done on CPU, for the time being. It gets evaluated at a small size then scaled up to fit the window. If you want to change the evaluation size, change the ModelWidth and ModelHeight variables.
+
 ## Build
 The project is written in C# and is built using Visual Studio 2019. It takes dependences on the following packages through NuGet:
 * Microsoft.ML.OnnxRuntime
@@ -49,6 +52,3 @@ The project is written in C# and is built using Visual Studio 2019. It takes dep
 * OpenCvSharp4.runtime.win
 
 It uses OpenCV for loading the webcam and window management, and ONNX to do the MLAI evaluation. 
-
-## Testing
-This project was tested on Windows 10 x64, on i7-10700K. The evaluation is done on CPU, for the time being. It gets evaluated at a small size then scaled up to fit the window. If you want to change the evaluation size, change the ModelWidth and ModelHeight variables.
