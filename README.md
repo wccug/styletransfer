@@ -23,4 +23,4 @@ The project is written in C# and is built using Visual Studio 2019. It takes dep
 It uses OpenCV for loading the webcam and window management, and ONNX to do the MLAI evaluation. 
 
 ## Testing
-This project was tested on Windows 10 x64, on i7-10700K. The evaluation is done on CPU, for the time being.
+This project was tested on Windows 10 x64, on i7-10700K. The evaluation is done on CPU, for the time being. It gets evaluated at a small size then scaled up to fit the window. If you want to change the evaluation size, change the ModelWidth and ModelHeight variables.
