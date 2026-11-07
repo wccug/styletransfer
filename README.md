@@ -1,6 +1,10 @@
 # Hackforge ML AI Style Transfer Demo
 
-This is a simple camera demo that uses ML AI style transfer. It displays your default camera feed, and uses an ONNX model to apply a style transfer. There are a few to choose from. It uses these pre-trained models from the [ONNX Model Zoo](https://huggingface.co/onnxmodelzoo):
+This is a simple camera demo that uses ML AI style transfer. For background, a style transfer is a machine learning technique that takes the visual content of one image and blends it with the artistic style of another reference image. For example, you can feed the algorithm a photograph of your car, with a model trained on a bunch of classic paintings; the output will look like your car, with a painting effect.
+
+The models for this demo come from a popular suite of models known as Fast Neural Style Transfer, which were originally developed by researcher Justin Johnson and adapted heavily into the PyTorch Examples repository before being converted into ONNX format.
+
+The application displays your default camera feed, and uses an ONNX model to apply a style transfer. There are a few to choose from. It uses these pre-trained models from the [ONNX Model Zoo](https://huggingface.co/onnxmodelzoo):
 * mosaic
 * candy
 * rain-princess
