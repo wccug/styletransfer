@@ -32,7 +32,11 @@ namespace styletransfer
 
                 if (File.Exists(path))
                 {
-                    models.Add(new NamedInferenceSession(styleNames[i], new InferenceSession(path)));
+                    SessionOptions sessionOptions = new SessionOptions();
+                    sessionOptions.AppendExecutionProvider_DML(0); // GPU adapter 0
+                    sessionOptions.EnableMemoryPattern = false;
+                    sessionOptions.ExecutionMode = ExecutionMode.ORT_SEQUENTIAL;
+                    models.Add(new NamedInferenceSession(styleNames[i], new InferenceSession(path, sessionOptions)));
                 }
                 else
                 {
