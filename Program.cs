@@ -13,8 +13,7 @@ namespace styletransfer
 
         // If the resolution of the model is kept pretty small it can be done on CPU even on a
         // not super high end computer.
-        const int ModelWidth = 224;
-        const int ModelHeight = 224;
+        const int ModelSize = 224;
 
         struct NamedInferenceSession
         {
@@ -46,7 +45,7 @@ namespace styletransfer
         {
             // Scale the camera input down to fit the model resolution
             using Mat scaledCameraInputBgrUnorm = new Mat();
-            Cv2.Resize(cameraInputBgrUnorm, scaledCameraInputBgrUnorm, new Size(ModelWidth, ModelHeight));
+            Cv2.Resize(cameraInputBgrUnorm, scaledCameraInputBgrUnorm, new Size(ModelSize, ModelSize));
 
             // OpenCV's camera format is BGR, but the style models were trained on RGB images,
             // so convert BGR to RGB.
@@ -59,13 +58,13 @@ namespace styletransfer
             scaledCameraInputRgbUnorm.ConvertTo(scaledCameraInputRgbF32, MatType.CV_32FC3);
             Mat[] scaledCameraInputRgbF32Planes = Cv2.Split(scaledCameraInputRgbF32);
 
-            DenseTensor<float> tensorInput = new DenseTensor<float>(new[] { 1, 3, ModelWidth, ModelHeight });
+            DenseTensor<float> tensorInput = new DenseTensor<float>(new[] { 1, 3, ModelSize, ModelSize });
 
             for (int channel = 0; channel < 3; ++channel)
             {
                 // Turn each channel into linear tensor data so it's easier to operate on
                 scaledCameraInputRgbF32Planes[channel].GetArray(out float[] data);
-                data.CopyTo(tensorInput.Buffer.Span.Slice(channel * ModelWidth * ModelHeight));
+                data.CopyTo(tensorInput.Buffer.Span.Slice(channel * ModelSize * ModelSize));
                 scaledCameraInputRgbF32Planes[channel].Dispose();
             }
 
@@ -78,9 +77,9 @@ namespace styletransfer
             var resultPlanes = new Mat[3];
             for (int channel = 0; channel < 3; ++channel)
             {
-                var plane = new float[ModelWidth * ModelHeight];
-                Array.Copy(resultData, channel * ModelWidth * ModelHeight, plane, 0, plane.Length);
-                resultPlanes[channel] = Mat.FromPixelData(ModelWidth, ModelHeight, MatType.CV_32FC1, plane).Clone();
+                var plane = new float[ModelSize * ModelSize];
+                Array.Copy(resultData, channel * ModelSize * ModelSize, plane, 0, plane.Length);
+                resultPlanes[channel] = Mat.FromPixelData(ModelSize, ModelSize, MatType.CV_32FC1, plane).Clone();
             }
             using var mergedPlanes = new Mat();
             Cv2.Merge(resultPlanes, mergedPlanes);
