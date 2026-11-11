@@ -105,17 +105,17 @@ namespace styletransfer
 
         static void Main(string[] args)
         {
-            List<NamedInferenceSession> sessions = LoadModels();
-            if (sessions.Count == 0)
-            {
-                Console.WriteLine("No models found. Put the .onnx files in a 'models' folder.");
-                return;
-            }
-
             using VideoCapture videoCapture = new VideoCapture(0); // Use the default camera
             if (!videoCapture.IsOpened())
             {
                 Console.WriteLine("Could not open webcam.");
+                return;
+            }
+
+            List<NamedInferenceSession> sessions = LoadModels();
+            if (sessions.Count == 0)
+            {
+                Console.WriteLine("No models found. Put the .onnx files in a 'models' folder.");
                 return;
             }
 
