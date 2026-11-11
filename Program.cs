@@ -105,10 +105,25 @@ namespace styletransfer
 
         static void Main(string[] args)
         {
-            using VideoCapture videoCapture = new VideoCapture(0); // Use the default camera
-            if (!videoCapture.IsOpened())
+            VideoCapture videoCapture;
+
+            try
             {
-                Console.WriteLine("Could not open webcam.");
+                videoCapture = new VideoCapture(0); // Use the default camera
+                if (!videoCapture.IsOpened())
+                {
+                    Console.WriteLine("Could not open webcam.");
+                    return;
+                }
+            }
+            catch (OpenCVException)
+            {
+                Console.WriteLine("An OpenCV error occurred when attempting to open the webcam.");
+                return;
+            }
+            catch (DllNotFoundException)
+            {
+                Console.WriteLine("There was a missing dependency when attempting to open the webcam.");
                 return;
             }
 
