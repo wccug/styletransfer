@@ -14,6 +14,8 @@ The application displays your default camera feed, and uses an ONNX model to app
 * udnie
 * pointilism
 
+It includes two backends to run it either on CPU or GPU.
+
 ## Example
 It works best on a live camera feed, but here's a still image with the different effects applied.
 
@@ -46,7 +48,7 @@ Use the following keyboard keys:
 * D - toggle diagnostic text, like the model name and frame counter, on and off
 
 ## Testing
-This project was tested on Windows 10 x64, on i7-10700K. The evaluation is done on CPU, for the time being. It gets evaluated at a small size then scaled up to fit the window. If you want to change the evaluation size, change the ModelWidth and ModelHeight variables.
+This project was tested on Windows 10 x64, on i7-10700K. The evaluation can be done on CPU or GPU, using the styletransfer.cpu.sln or styletransfer.gpu.sln respectively. The GPU one uses ONNX with DirectML. Either way, the inference gets evaluated at a small size then scaled up to fit the window.
 
 ## Build
 The project is written in C# and is built using Visual Studio 2019. It takes dependences on the following packages through NuGet:
