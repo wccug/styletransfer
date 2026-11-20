@@ -48,7 +48,7 @@ Use the following keyboard keys:
 * D - toggle diagnostic text, like the model name and frame counter, on and off
 
 ## Testing
-This project was tested on Windows 10 x64, on i7-10700K. The evaluation can be done on CPU or GPU, using the styletransfer.cpu.sln or styletransfer.gpu.sln respectively. The GPU one uses ONNX with DirectML. Either way, the inference gets evaluated at a small size then scaled up to fit the window.
+This project was tested on Windows 10 x64, on i7-10700K and with a couple different GPU adapters. The evaluation can be done on CPU or GPU, using the styletransfer.cpu.sln or styletransfer.gpu.sln respectively. The GPU one uses ONNX with DirectML. Either way, the inference gets evaluated at a small size then scaled up to fit the window.
 
 ## Build
 The project is written in C# and is built using Visual Studio 2019. It takes dependences on the following packages through NuGet:
